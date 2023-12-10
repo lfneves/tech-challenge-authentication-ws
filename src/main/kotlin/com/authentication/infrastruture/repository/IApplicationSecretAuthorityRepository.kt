@@ -1,0 +1,6 @@
+package com.authentication.infrastruture.repository
+
+import com.authentication.infrastruture.entity.ApplicationSecretAuthorityEntity
+import org.springframework.data.r2dbc.repository.R2dbcRepository
+
+interface IApplicationSecretAuthorityRepository: R2dbcRepository<ApplicationSecretAuthorityEntity, String>

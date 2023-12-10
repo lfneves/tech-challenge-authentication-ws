@@ -1,0 +1,55 @@
+#version: '3.7'
+#services:
+#  mongodb_container:
+#    image: mongo:latest
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: root
+#      MONGO_INITDB_ROOT_PASSWORD: mongopw
+#    ports:
+#      - 27017:27017
+#    volumes:
+#      - mongodb_data_container:/data/db
+#
+#volumes:
+#  mongodb_data_container:
+
+version: '3.7'
+
+services:
+  delivery-mvp:
+    image: authentication-ws:latest
+    container_name: authentication-ws
+    build: .
+    ports:
+      - '8099:8099'
+    depends_on:
+      - database
+    networks:
+      - mvp-network
+
+  database:
+    image: 'postgres:latest'
+#    restart: always
+    container_name: 'db'
+    expose:
+      - '5432'
+    ports:
+      - '5432:5432'
+    environment:
+      TZ: 'America/Sao_Paulo'
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: postgresdb
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+      - ./src/main/resources/database/1_schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
+      - ./src/main/resources/database/2_data.sql:/docker-entrypoint-initdb.d/2_data.sql
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U postgres" ]
+      interval: 1s
+    networks:
+      - mvp-network
+
+networks:
+  mvp-network:
+    driver: bridge

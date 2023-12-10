@@ -1,0 +1,38 @@
+server:
+  port: 8099
+  servlet:
+    contextPath: /
+  error:
+    include-message: always
+
+spring-doc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+spring:
+  profiles:
+    active: production
+  main:
+    allow-bean-definition-overriding: true
+  webflux:
+    base-path: /
+  docker:
+    compose:
+      file: "docker-compose.yml"
+
+logging:
+  level:
+    root:
+      org.springframework.web: "debug"
+      org.hibernate: "debug"
+
+datasource:
+#  host: "${POSTGRES_HOST:postgresdb.cf1zoi5dlyni.us-east-1.rds.amazonaws.com}"
+  host: "${POSTGRES_HOST:localhost}"
+  port: "${POSTGRES_PORT:5432}"
+  database: "${POSTGRES_DB:postgresdb}"
+  user: "${POSTGRES_USER:postgres}"
+  password: "${POSTGRES_PASSWORD:postgres}"
+  pool:
+    min-connections: 1
+    max-connections: 30
