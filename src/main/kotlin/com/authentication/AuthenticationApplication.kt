@@ -9,7 +9,6 @@ import org.springframework.data.r2dbc.config.EnableR2dbcAuditing
 @SpringBootApplication
 @EnableR2dbcAuditing
 @EnableCaching
-@EntityScan("com.authentication.infrastruture.repository")
 class AuthenticationApplication {
     companion object {
         @JvmStatic

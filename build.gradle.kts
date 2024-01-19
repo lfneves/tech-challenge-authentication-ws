@@ -2,9 +2,9 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
 	id("org.springframework.boot") version "3.2.0"
-	id("io.spring.dependency-management") version "1.1.0"
-	kotlin("jvm") version "1.8.21"
-	kotlin("plugin.spring") version "1.8.21"
+	id("io.spring.dependency-management") version "1.1.4"
+	kotlin("jvm") version "1.9.21"
+	kotlin("plugin.spring") version "1.9.21"
 }
 
 group = "com.authentication"
@@ -25,6 +25,7 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-tomcat:$springVersion")
 	implementation("org.springframework.boot:spring-boot-starter-webflux:$springVersion")
 	implementation("org.springframework.boot:spring-boot-starter-security:$springVersion")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client:$springVersion")
 	implementation("org.springframework.session:spring-session-core:$springVersion")
 	implementation("org.springframework.boot:spring-boot-starter-cache:$springVersion")
 	implementation("org.springframework.boot:spring-boot-docker-compose:$springVersion")

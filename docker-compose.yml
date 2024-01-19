@@ -41,12 +41,14 @@ services:
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: postgresdb
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
       - ./src/main/resources/database/1_schema.sql:/docker-entrypoint-initdb.d/1_schema.sql
       - ./src/main/resources/database/2_data.sql:/docker-entrypoint-initdb.d/2_data.sql
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U postgres" ]
-      interval: 1s
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
     networks:
       - mvp-network
 

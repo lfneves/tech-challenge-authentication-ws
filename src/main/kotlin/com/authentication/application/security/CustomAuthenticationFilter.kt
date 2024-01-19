@@ -14,9 +14,9 @@ class CustomAuthenticationFilter @Autowired constructor(
 ): AuthenticationWebFilter(reactiveAuthenticationManager) {
 
     init {
-        setSecurityContextRepository(NoOpServerSecurityContextRepository.getInstance())
-        setServerAuthenticationConverter(customReactiveAuthenticationConverter)
-        setAuthenticationSuccessHandler { webFilterExchange, authentication ->
+        this.setSecurityContextRepository(NoOpServerSecurityContextRepository.getInstance())
+        this.setServerAuthenticationConverter(customReactiveAuthenticationConverter)
+        this.setAuthenticationSuccessHandler { webFilterExchange, authentication ->
             webFilterExchange.chain.filter(webFilterExchange.exchange)
                 .contextWrite(ReactiveSecurityContextHolder.withAuthentication(authentication))
         }

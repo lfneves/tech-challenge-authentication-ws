@@ -1,5 +1,6 @@
 package com.authentication.domain.service
 
+import com.authentication.domain.model.auth.AuthApplicationDTO
 import com.authentication.domain.model.auth.AuthClientDTO
 import com.authentication.domain.model.auth.AuthenticationVO
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,6 +19,7 @@ class CustomReactiveAuthenticationManager @Autowired constructor(
         if(authentication !is AuthenticationVO) throw BadCredentialsException("Usuário ou senha errados.")
         if(authentication.isAuthenticated) return Mono.just(authentication)
         if(authentication.iAuthDTO is AuthClientDTO) return authClientService.authenticate(authentication)
+        if(authentication.iAuthDTO is AuthApplicationDTO) return authClientService.authenticate(authentication)
         return Mono.just(authentication)
     }
 }

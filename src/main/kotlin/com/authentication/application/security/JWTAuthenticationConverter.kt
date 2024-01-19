@@ -28,8 +28,12 @@ class JWTAuthenticationConverter @Autowired constructor(
                         authDTO.toAuthentication(authorities).also {
                             it.isAuthenticated = true
                         }
-                }
+                    }
             }
+    }
+
+    private fun handleError(error: Throwable): Mono<Authentication> {
+        return Mono.error(error)
     }
 
     private fun getRoles(authDTO: IAuthDTO): Mono<List<SimpleGrantedAuthority>> {

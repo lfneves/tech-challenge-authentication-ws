@@ -1,2 +1,8 @@
+INSERT INTO tb_address (street, city, state, postal_code)
+VALUES ('123 Main St', 'Springfield', 'IL', '12345');
+
 INSERT INTO tb_client (password, email, cpf, name, id_address)
 VALUES ('c7ad44cbad762a5da0a452f9e854fdc1e0e7a52a38015f23f3eab1d80b931dd472634dfac71cd34ebc35d16ab7fb8a90c81f975113d6c7538dc69dd8de9077ec', 'client@example.com', '99999999999', 'admin', 1);
+
+INSERT INTO tb_application_secret_authority (client_id, cd_authority)
+VALUES ('123456', 'USER');

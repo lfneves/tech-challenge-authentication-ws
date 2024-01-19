@@ -1,3 +1,8 @@
+CREATE TABLE IF NOT EXISTS tb_application_secret_authority (
+    client_id VARCHAR(255) PRIMARY KEY,
+    cd_authority VARCHAR(255)
+);
+
 CREATE TABLE IF NOT EXISTS tb_address (
     id       SERIAL PRIMARY KEY,
     street   VARCHAR(50) NULL,
